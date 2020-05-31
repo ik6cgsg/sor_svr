@@ -12,7 +12,7 @@ def poly_kernel_func(support_vec: np.ndarray, vec: np.ndarray) -> float:
 
 
 def gauss_kernel_func(support_vec: np.ndarray, vec: np.ndarray) -> float:
-    return np.exp(-(np.linalg.norm(support_vec - vec) ** 2) / 0.1)
+    return np.exp(-(np.linalg.norm(support_vec - vec) ** 2) / 2)
 
 
 class SorSvr(object):

@@ -15,9 +15,9 @@ def func(x):
 
 
 # Hyper params for model data
-epsilon = 0.05
+epsilon = 0.1
 sor_epsilon = 1e-3
-omega = 0.5
+omega = 1.7
 C = 100
 kernel = gauss_kernel_func
 # Hyper params for noised data

@@ -12,7 +12,11 @@ def poly_kernel_func(support_vec: np.ndarray, vec: np.ndarray) -> float:
 
 
 def gauss_kernel_func(support_vec: np.ndarray, vec: np.ndarray) -> float:
-    return np.exp(-(np.linalg.norm(support_vec - vec) ** 2) / 2)
+    return np.exp(-(np.linalg.norm(support_vec - vec) ** 2) / 0.8)
+
+
+def gauss_kernel_func_n(support_vec: np.ndarray, vec: np.ndarray) -> float:
+    return np.exp(-(np.linalg.norm(support_vec - vec) ** 2) / 0.2)
 
 
 class SorSvr(object):
@@ -49,7 +53,9 @@ class SorSvr(object):
         """
         phi = initial_guess[:]
         residual = np.inf
+        iter_count = 0
         while residual > self.sor_epsilon:
+            iter_count += 1
             old_phi = phi.copy()
             for i in range(A.shape[0]):
                 sigma = 0
@@ -64,6 +70,7 @@ class SorSvr(object):
                     phi[i] = self.C
             residual = np.linalg.norm(phi - old_phi)
             print('Residual: {0:10.6g}'.format(residual))
+        print("\n~~~~~~ Iters count: {} ~~~~~~\n".format(iter_count))
         return phi
 
     def train(self, x_train: np.ndarray, y_train: np.ndarray):
